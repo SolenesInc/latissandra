@@ -30,13 +30,13 @@ final class CPUSampler {
         guard result == KERN_SUCCESS else { return 0 }
 
         defer { previous = info }
-        guard let prev = previous else { return 0 } // first call: prime baseline only
+        guard let prev = previous else { return 0 }  // first call: prime baseline only
 
         // cpu_ticks indices: 0 = user, 1 = system, 2 = idle, 3 = nice.
-        let user   = Double(info.cpu_ticks.0) - Double(prev.cpu_ticks.0)
+        let user = Double(info.cpu_ticks.0) - Double(prev.cpu_ticks.0)
         let system = Double(info.cpu_ticks.1) - Double(prev.cpu_ticks.1)
-        let idle   = Double(info.cpu_ticks.2) - Double(prev.cpu_ticks.2)
-        let nice   = Double(info.cpu_ticks.3) - Double(prev.cpu_ticks.3)
+        let idle = Double(info.cpu_ticks.2) - Double(prev.cpu_ticks.2)
+        let nice = Double(info.cpu_ticks.3) - Double(prev.cpu_ticks.3)
 
         let busy = user + system + nice
         let total = busy + idle

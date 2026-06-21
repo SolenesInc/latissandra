@@ -30,7 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         buildMenu()
 
-        _ = cpu.sample()   // prime the CPU baseline
+        _ = cpu.sample()  // prime the CPU baseline
         refresh()
 
         let timer = Timer(timeInterval: refreshInterval, repeats: true) { [weak self] _ in
@@ -68,7 +68,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if !LoginItem.setEnabled(desired) {
             let alert = NSAlert()
             alert.messageText = "Couldn't update Login Items"
-            alert.informativeText = "macOS refused the change. You can set it manually in System Settings → General → Login Items."
+            alert.informativeText =
+                "macOS refused the change. You can set it manually in System Settings → General → Login Items."
             alert.runModal()
         }
         updateLoginMenuItem()

@@ -42,8 +42,8 @@ final class MemorySampler {
         }
 
         // App Memory ≈ anonymous app pages that aren't purgeable.
-        let appMemory  = UInt64(stats.internal_page_count) - UInt64(stats.purgeable_count)
-        let wired      = UInt64(stats.wire_count)
+        let appMemory = UInt64(stats.internal_page_count) - UInt64(stats.purgeable_count)
+        let wired = UInt64(stats.wire_count)
         let compressed = UInt64(stats.compressor_page_count)
 
         let usedBytes = (appMemory + wired + compressed) * pageSize

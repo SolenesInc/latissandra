@@ -7,6 +7,8 @@
 A tiny macOS menu bar monitor that shows live **CPU** and **RAM** usage.
 Named after Kassandra, my dog who barks at the slightest disturbance.
 
+[![CI](https://github.com/SolenesInc/latissandra/actions/workflows/ci.yml/badge.svg)](https://github.com/SolenesInc/latissandra/actions/workflows/ci.yml)
+
 <img src="docs/images/menubar.png" alt="Latissandra in the menu bar" height="28">
 
 <img src="docs/images/dropdown.png" width="320" alt="Latissandra dropdown">
@@ -104,6 +106,19 @@ The icon is rendered from code (a white pawprint on a blue→indigo squircle):
 ```
 
 This rewrites `docs/images/icon_1024.png` and `Resources/AppIcon.icns`.
+
+## Development
+
+The project uses Apple's `swift-format` (bundled with the Swift toolchain) 
+for both formatting and linting, and a small dependency-free test
+runner. Every push and pull request runs lint → build → test via GitHub Actions
+([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
+
+```sh
+./tools/format.sh   # auto-format Sources and Tests in place
+./tools/lint.sh     # check formatting/style (fails on violations)
+./tools/test.sh     # compile and run the test suite
+```
 
 ## License
 

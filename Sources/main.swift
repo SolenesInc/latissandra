@@ -12,18 +12,19 @@ import Cocoa
 
 if CommandLine.arguments.contains("--probe") {
     let cpu = CPUSampler()
-    _ = cpu.sample()                       // prime baseline
-    Thread.sleep(forTimeInterval: 0.5)     // let some ticks accumulate
+    _ = cpu.sample()  // prime baseline
+    Thread.sleep(forTimeInterval: 0.5)  // let some ticks accumulate
     let cpuPercent = cpu.sample()
     let mem = MemorySampler().sample()
 
     print(String(format: "CPU: %.1f%%", cpuPercent))
-    print(String(
-        format: "RAM: %.2f / %.2f GB (%.1f%%)",
-        Double(mem.usedBytes) / 1_073_741_824.0,
-        Double(mem.totalBytes) / 1_073_741_824.0,
-        mem.percent
-    ))
+    print(
+        String(
+            format: "RAM: %.2f / %.2f GB (%.1f%%)",
+            Double(mem.usedBytes) / 1_073_741_824.0,
+            Double(mem.totalBytes) / 1_073_741_824.0,
+            mem.percent
+        ))
     exit(0)
 }
 
@@ -44,7 +45,7 @@ if CommandLine.arguments.contains("--login-disable") {
 }
 
 let app = NSApplication.shared
-app.setActivationPolicy(.accessory)   // menu bar only, no dock icon / app switcher entry
+app.setActivationPolicy(.accessory)  // menu bar only, no dock icon / app switcher entry
 
 let delegate = AppDelegate()
 app.delegate = delegate

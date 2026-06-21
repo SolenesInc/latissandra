@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    name: Lint, build & test
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Toolchain versions
+        run: |
+          swift --version
+          swift format --version
+
+      - name: Lint (swift-format)
+        run: ./tools/lint.sh
+
+      - name: Build app
+        run: ./build.sh
+
+      - name: Run tests
+        run: ./tools/test.sh
