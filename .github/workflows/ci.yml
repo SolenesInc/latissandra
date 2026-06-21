@@ -28,5 +28,8 @@ jobs:
       - name: Build app
         run: ./build.sh
 
+      - name: Offline guarantee (no network deps)
+        run: ./tools/check-offline.sh
+
       - name: Run tests
         run: ./tools/test.sh

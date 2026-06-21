@@ -32,6 +32,11 @@ grep -rinE 'URLSession|URLRequest|NWConnection|http|socket' Sources/
 The only frameworks it links are AppKit, Foundation, CoreFoundation, and
 ServiceManagement (for the optional "Open at Login" toggle).
 
+There is a check to flag if networking is implemented:
+`./tools/check-offline.sh` fails the build if anyone adds a networking API,
+a dependency manager (SPM/CocoaPods/Carthage), or links a non-system or
+networking framework.
+
 ## Requirements
 
 - macOS 13 (Ventura) or later
@@ -115,9 +120,10 @@ runner. Every push and pull request runs lint → build → test via GitHub Acti
 ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
 ```sh
-./tools/format.sh   # auto-format Sources and Tests in place
-./tools/lint.sh     # check formatting/style (fails on violations)
-./tools/test.sh     # compile and run the test suite
+./tools/format.sh         # auto-format Sources and Tests in place
+./tools/lint.sh           # check formatting/style (fails on violations)
+./tools/test.sh           # compile and run the test suite
+./tools/check-offline.sh  # enforce the no-network guarantee
 ```
 
 ## License
